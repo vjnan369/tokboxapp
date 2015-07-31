@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'groups#index'
 
-match '/room/:id', :to => "groups#party", :as => :room, :via => :get
+match '/room/:id', :to => "groups#room", :as => :room, :via => :get
   resources :groups
 
   # The priority is based upon order of creation: first created -> highest priority.

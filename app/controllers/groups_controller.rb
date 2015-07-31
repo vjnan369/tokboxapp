@@ -9,12 +9,20 @@ class GroupsController < ApplicationController
   def create
   	session = @opentok.create_session :media_mode => :routed
   	params[:group][:sessionId] = session.session_id
-  	Group.create(strong_param)
+  	@group = Group.create(strong_param)
   	#@group = Group.new(params[:group])
+    if @group.save
+      redirect_to("/room/"+@group.id.to_s)
+    else
+      render :controller => 'groups', :action => 'index'
+    end
   
   end
 
   def room
+    @group = Group.find(params[:id])
+    role = :moderator
+    @opentok_token = @opentok.generate_token @group.sessionId
   end
 private
   def config_opentok

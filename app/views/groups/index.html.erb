@@ -1,21 +1,29 @@
+<div align="center">
 <h1>Groups#index</h1>
 <p>Find me in app/views/groups/index.html.erb</p>
 <%=form_for(@group) do |f|%>
 <%=f.text_field :name %>
 <%=f.submit%>
 <%end%>
-<fieldset>
-	<legend>available groups</legend>
-	<table>
+</div>
+<div>
+	<h2 align="center">available groups</h2>
+	<table align="center" border="1">
 		<tr>
+		    <th>group id</th>
 			<th>name</th>
 			<th>started at</th>
+			<th>seession id</th>
+			
 			</tr>
 			<%@groups.each do |group|%>
 			<tr>
-			<td><%=group.name%></td>
+			<td><%=group.id%></td>
+			<td><a href="/room/<%=group.id%>"><%=group.name%></a></td>
 			<td><%=group.created_at%></td>
+			<td><%=group.sessionId%></td>
+			
 		</tr>
 			<%end%>
 	</table>
-	</fieldset>
+	</div>

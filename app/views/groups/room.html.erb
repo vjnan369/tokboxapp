@@ -1,2 +1,32 @@
 <h1>Groups#room</h1>
-<p>Find me in app/views/groups/room.html.erb</p>
+<p>unique url for this room is <span style="color:blue">http://localhost:3000/<%=@group.id%></span></p>
+<div id="videobox">
+</div>
+<%=@group.sessionId%>
+ <%=@opentok_token%>
+<script src="http://static.opentok.com/v2/js/opentok.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+ var apiKey = 45297362;
+ var sessionId ="<%=@group.sessionId%>" ;
+ var token = "<%=@opentok_token%>";
+ var session;
+ OT.setLogLevel(OT.DEBUG);
+ 	session = OT.initSession(apiKey,sessionId);
+ 	session.on
+ 	({
+ 		streamCreated: function(event)
+ 		{
+ 			session.subscribe(event.stream,'subscribersDiv',{insertMode: 'append'});
+ 		}
+ 	});
+ 	session.connect(token,function(error){
+ 		if(error)
+ 		{
+ 			console.log(error.message);
+ 		}
+ 		else{
+ 			session.publish('myPublisherDiv',{width: 320,height: 240});
+ 		}
+ 	});	
+ 	
+</script>
