@@ -1,20 +1,9 @@
-<h1>Groups#room</h1>
-<div id="myPublisherDiv"></div>
-<p>unique url for this room is <span style="color:blue">tokboxapp.herokuapp.com/room/<%=@group.id%></span></p>
-<%=@group.sessionId%>
- <%=@opentok_token%>
-<script src="http://static.opentok.com/v2/js/opentok.min.js" type="text/javascript"></script>
-<script>
-
  var apiKey = 45297362;
  var sessionId ="<%=@group.sessionId%>" ;
  var token = "<%=@opentok_token%>";
  var session;
- 	alert("hello");
  OT.setLogLevel(OT.DEBUG);
-
  	session = OT.initSession(apiKey,sessionId);
-
  	session.on
  	({
  		streamCreated: function(event)
@@ -22,8 +11,7 @@
  			session.subscribe(event.stream,'subscribersDiv',{insertMode: 'append'});
  		}
  	});
-
-session.connect(token,function(error){
+ 	session.connect(token,function(error){
  		if(error)
  		{
  			console.log(error.message);
@@ -32,6 +20,4 @@ session.connect(token,function(error){
  			session.publish('myPublisherDiv',{width: 320,height: 240});
  		}
  	});	
-
-</script>
-<%= javascript_include_tag "groups" %>
+ 	
