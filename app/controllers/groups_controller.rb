@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
 	require "opentok"
 	before_filter :config_opentok
   def index
+    session = nil;
   	@group = Group.new
   	@groups = Group.all
   end
