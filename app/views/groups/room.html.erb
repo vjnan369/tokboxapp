@@ -10,7 +10,6 @@
  var sessionId ="<%=@group.sessionId%>" ;
  var token = "<%=@opentok_token%>";
  var session;
- 	alert("hello");
  OT.setLogLevel(OT.DEBUG);
 
  	session = OT.initSession(apiKey,sessionId);
@@ -32,6 +31,5 @@ session.connect(token,function(error){
  			session.publish('myPublisherDiv',{width: 320,height: 240});
  		}
  	});	
-
 </script>
 <%= javascript_include_tag "groups" %>
