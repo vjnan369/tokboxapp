@@ -7,9 +7,10 @@
   <%= javascript_include_tag 'http://static.opentok.com/v2/js/opentok.min.js' %>
   <%= csrf_meta_tags %>
 </head>
+<%=render 'layouts/header'%>
 <body>
 
 <%= yield %>
-
+<%=render 'layouts/footer'%>
 </body>
 </html>
